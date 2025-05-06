@@ -48,6 +48,27 @@ func loadHashMapTestData(fileDir string) ([]Operation, map[string]interface{}, e
 	return operations, expectedOutput, nil
 }
 
+// 操作数に基づいて最適なバケット数を計算する
+func calculateOptimalBucketSize(operationCount int) int {
+	// 操作数が少ない場合はデフォルトのバケット数を使用
+	if operationCount < 100 {
+		return DefaultBucketSize
+	}
+
+	// 操作数に基づいてバケット数を計算
+	// 一般的に、予想される要素数の1.3倍程度が効率的
+	// 実際の要素数は操作数より少ない可能性があるので、操作数の約10分の7を使用
+	estimatedSize := int(float64(operationCount) * 0.7)
+
+	// 2のべき乗に丸める（ハッシュマップのサイズは2のべき乗が効率的）
+	bucketSize := 16 // 最小値
+	for bucketSize < estimatedSize {
+		bucketSize *= 2
+	}
+
+	return bucketSize
+}
+
 // MeasureHashMapPerformance はHashMapの性能と正当性を計測する
 func MeasureHashMapPerformance(fileDir string, iterations int) map[string]interface{} {
 	var err error
@@ -57,7 +78,9 @@ func MeasureHashMapPerformance(fileDir string, iterations int) map[string]interf
 		return nil
 	}
 
-	hashMap := NewHashMap(16)
+	// 操作数に基づいて最適なバケット数を計算
+	optimalBucketSize := calculateOptimalBucketSize(len(operations))
+	hashMap := NewHashMap(optimalBucketSize)
 
 	fmt.Printf("HashMap実装のパフォーマンス計測と正当性検証:\n")
 	fmt.Printf("操作数: %d\n", len(operations))
@@ -68,7 +91,7 @@ func MeasureHashMapPerformance(fileDir string, iterations int) map[string]interf
 		for i := 0; i < iterations; i++ {
 			// 複数回反復する場合は新しいインスタンスで開始
 			if i > 0 {
-				hashMap = NewHashMap(16)
+				hashMap = NewHashMap(optimalBucketSize)
 			}
 
 			for _, op := range operations {
