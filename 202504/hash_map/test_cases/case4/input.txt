@@ -1,0 +1,10 @@
+[
+    { "action": "get", "key": "nonexistent" },
+    { "action": "remove", "key": "nonexistent" },
+    { "action": "put", "key": "test", "value": 42 },
+    { "action": "get", "key": "test" },
+    { "action": "remove", "key": "test" },
+    { "action": "get", "key": "test" },
+    { "action": "put", "key": "", "value": 100 },
+    { "action": "get", "key": "" }
+]

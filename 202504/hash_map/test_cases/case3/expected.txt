@@ -1,0 +1,1 @@
+{ "apple": 10, "banana": 15, "cherry": 20 }

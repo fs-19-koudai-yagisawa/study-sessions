@@ -1,0 +1,9 @@
+[
+    { "action": "put", "key": "apple", "value": 5 },
+    { "action": "put", "key": "banana", "value": 8 },
+    { "action": "put", "key": "orange", "value": 10 },
+    { "action": "get", "key": "apple" },
+    { "action": "get", "key": "banana" },
+    { "action": "remove", "key": "orange" },
+    { "action": "get", "key": "orange" }
+]
