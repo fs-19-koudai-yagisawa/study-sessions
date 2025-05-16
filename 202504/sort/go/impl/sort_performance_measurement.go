@@ -9,6 +9,22 @@ import (
 	utils "study-session/utils/go"
 )
 
+// parseValue parses a string into an appropriate type (int, float, or string)
+func parseValue(val string) interface{} {
+	// Try parsing as integer first
+	if intVal, err := strconv.Atoi(strings.TrimSpace(val)); err == nil {
+		return intVal
+	}
+	
+	// If not an integer, try parsing as float
+	if floatVal, err := strconv.ParseFloat(strings.TrimSpace(val), 64); err == nil {
+		return floatVal
+	}
+	
+	// If neither integer nor float, return as string
+	return strings.TrimSpace(val)
+}
+
 // loadSortTestData は入力ファイルと期待値ファイルを読み込む
 func loadSortTestData(fileDir string) ([]interface{}, []interface{}, error) {
 	// 入力データの読み込み
@@ -22,12 +38,8 @@ func loadSortTestData(fileDir string) ([]interface{}, []interface{}, error) {
 	inputStr := strings.TrimSpace(string(inputData))
 	inputStr = strings.Trim(inputStr, "[]")
 	if inputStr != "" {
-		for _, numStr := range strings.Split(inputStr, ",") {
-			num, err := strconv.Atoi(strings.TrimSpace(numStr))
-			if err != nil {
-				return nil, nil, fmt.Errorf("数値のパースに失敗しました: %v", err)
-			}
-			array = append(array, num)
+		for _, itemStr := range strings.Split(inputStr, ",") {
+			array = append(array, parseValue(itemStr))
 		}
 	}
 
@@ -42,12 +54,8 @@ func loadSortTestData(fileDir string) ([]interface{}, []interface{}, error) {
 	expectedStr := strings.TrimSpace(string(expectedData))
 	expectedStr = strings.Trim(expectedStr, "[]")
 	if expectedStr != "" {
-		for _, numStr := range strings.Split(expectedStr, ",") {
-			num, err := strconv.Atoi(strings.TrimSpace(numStr))
-			if err != nil {
-				return array, nil, fmt.Errorf("期待値のパースに失敗しました: %v", err)
-			}
-			expectedOutput = append(expectedOutput, num)
+		for _, itemStr := range strings.Split(expectedStr, ",") {
+			expectedOutput = append(expectedOutput, parseValue(itemStr))
 		}
 	}
 
@@ -83,13 +91,13 @@ func MeasureSortPerformance(fileDir string, iterations int) map[string]interface
 				// ソート前とソート後の最初の5要素を表示
 				fmt.Printf("ソート前の先頭5要素: ")
 				for j := 0; j < 5 && j < len(array); j++ {
-					fmt.Printf("%d ", array[j])
+					fmt.Printf("%v ", array[j])
 				}
 				fmt.Println()
 
 				fmt.Printf("ソート後の先頭5要素: ")
 				for j := 0; j < 5 && j < len(sorted); j++ {
-					fmt.Printf("%d ", sorted[j])
+					fmt.Printf("%v ", sorted[j])
 				}
 				fmt.Println()
 			}

@@ -1,0 +1,6 @@
+This is a small test case for grep performance testing.
+We'll search for words like "test" and "performance".
+This file is used to test small datasets.
+Performance testing helps identify bottlenecks.
+Another line with the word test in it.
+The end of the small test file.
