@@ -1,0 +1,9 @@
+The search term "findme" will appear multiple times throughout the text.
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. findme
+Sed nisi. Nulla quis sem at nibh elementum imperdiet. findme
+Torquent per conubia nostra, per inceptos himenaeos. findme
+Morbi lectus risus, iaculis vel, suscipit quis, luctus non, massa. findme
+Per conubia nostra, per inceptos himenaeos. Nam nec ante. findme
+Vestibulum sapien. Proin quam. Etiam ultrices. findme
+At varius magna libero nec odio. Nullam mollis. Ut justo. findme
+Sed lectus. Praesent elementum hendrerit tortor. Sed semper lorem at felis. findme

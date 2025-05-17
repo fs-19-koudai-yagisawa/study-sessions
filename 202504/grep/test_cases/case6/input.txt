@@ -1,0 +1,2 @@
+textfile.txt
+CRITICAL_INFORMATION

@@ -1,0 +1,16 @@
+book.txt
+This is a small test case for grep performance testing.
+It contains a few lines of text with some search patterns.
+We'll search for words like "test" and "performance".
+The grep implementation should find these words quickly.
+This file is used to test small datasets.
+Testing performance with minimal data.
+Finding patterns in simple text.
+Search for "grep" and count occurrences.
+Testing is important for software quality.
+Performance testing helps identify bottlenecks.
+Grep is a powerful text search utility.
+It looks for text patterns defined by regular expressions.
+Line with no special patterns.
+Another line with the word test in it.
+The end of the small test file.
